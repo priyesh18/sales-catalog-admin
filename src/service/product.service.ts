@@ -10,12 +10,23 @@ export class ProductService {
     onAdd(id: number, company: string, type: string, subtype: string, price: number, imageUrl: string) {
         this.product.push(new Product(id,company,type,subtype,price,imageUrl))
         console.log(this.product);
-        return this.http.post('https://triveni-b663b.firebaseio.com/product-list/'+company+'/'+type+'/'+subtype+'.json',{id:id,price:price})
+        return this.http.post('https://triveni-b663b.firebaseio.com/product-list/'+company+'/'+type+'/'+subtype+'.json',
+        {id:id,price:price, image: imageUrl})
         .map((response: Response)=> {
-            return response.json;
+            return response.json();
         })
     }
-    getProducts() {
-        
+    getProducts(company: string, type: string) {
+        return this.http.get('https://triveni-b663b.firebaseio.com/product-list/'+company+'/'+type+'.json')
+            .map((response: Response) => {
+                return response.json();
+            });
+    }
+    onEdit(id: number, company: string, type: string, subtype: string, price: number, imageUrl: string) {
+        return this.http.put('https://triveni-b663b.firebaseio.com/product-list/'+company+'/'+type+'/'+subtype+'.json',
+        {id:id,price:price, image: imageUrl})
+        .map((response: Response)=> {
+            return response.json();
+        })
     }
 }

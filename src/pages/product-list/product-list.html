@@ -3,7 +3,7 @@
 
   <ion-navbar>
     <ion-buttons right>
-      <button [navPush]="editProductPage" ion-button icon-only>
+      <button [navPush]="editProductPage" [navParams]="{mode:'New'}" ion-button icon-only>
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -15,36 +15,39 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-list-header>
+    <ion-item-divider color="primary">
       SURYA CARE
-    </ion-list-header>
-    <button ion-item>
+    </ion-item-divider>
+    <button ion-item (click)="onClick({company:'SuryaCare',type:'Glass'})">
       Glass
     </button>
-    <button ion-item>
+    <button ion-item (click)="onClick({company:'SuryaCare',type:'Steel'})">
       Steel
     </button>
     
   
-  <ion-list-header>
+  <ion-item-divider color="primary">
     SURYA SIDDHI
-  </ion-list-header>
-  <button ion-item>
+  </ion-item-divider>
+  <button ion-item (click)="onClick({company:'SuryaSiddhi',type:'Glass'})">
     Glass
   </button>
-  <button ion-item>
+  <button ion-item (click)="onClick({company:'SuryaSiddhi',type:'Steel'})">
     Steel
   </button>
 
-  <ion-list-header>
+  <ion-item-divider color="primary">
     SURYA URJA
-  </ion-list-header>
-  <button ion-item>
+  </ion-item-divider>
+  <button ion-item (click)="onClick({company:'SuryaUrja',type:'Steel'})">
     Steel
   </button>
 
-  <ion-list-header>
+  <ion-item-divider color="primary">
     SURYA CLASSIC
-  </ion-list-header>
+  </ion-item-divider>
+  <button ion-item (click)="onClick({company:'SuryaClassic',type:'Steel'})">
+    Steel
+  </button>
 </ion-list>
 </ion-content>

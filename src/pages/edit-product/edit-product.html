@@ -2,14 +2,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Product</ion-title>
+    <ion-title>{{mode}} Product</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <form #f="ngForm" (ngSubmit)="onAddProduct(f)">
+  <form #f="ngForm" (ngSubmit)="onAddProduct(f)" *ngIf="mode=='New'">
     <ion-list>
       <ion-item>
           <ion-label floating>Id</ion-label>
@@ -77,6 +77,80 @@
       </ion-card>
           
           
+      
+    </ion-list>
+    <button ion-button type="submit">Save</button>
+  </form>
+
+
+  <form #f="ngForm" (ngSubmit)="onAddProduct(f)" *ngIf="mode=='Edit'">
+    <ion-list>
+      <ion-item>
+          <ion-label floating>Id</ion-label>
+          <ion-input [(ngModel)]="data.id" type="number" name="id" ></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>Company</ion-label>
+          <ion-select [(ngModel)]="data.company" name="company">
+            <ion-option value="SuryaCare">
+              Surya Care
+            </ion-option>
+            <ion-option value="SuryaSiddhi">
+              Surya Siddhi
+            </ion-option>
+            <ion-option value="SuryaUrja">
+                  Surya Urja
+            </ion-option>
+            <ion-option value="SuryaClassic">
+                  Surya Classic
+            </ion-option>
+          </ion-select>
+      </ion-item>
+      
+       
+      <ion-item>
+          <ion-label floating>Type</ion-label>
+          <ion-select [(ngModel)]="data.type" name="type">
+            <ion-option value="Steel">
+              Steel
+            </ion-option>
+            <ion-option value="Glass">
+              Glass
+            </ion-option>
+            
+          </ion-select>
+      </ion-item>
+          
+      <ion-item>
+          <ion-label floating>Subtype</ion-label>
+          <ion-select [(ngModel)]="data.subtype" name="subtype">
+            <ion-option value="Single">
+              Single
+            </ion-option>
+            <ion-option value="Double">
+              Double
+            </ion-option>
+            <ion-option value="Triple">
+              Triple
+            </ion-option>
+            <ion-option value="Four">
+              Four
+            </ion-option>
+          </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Price</ion-label>
+        <ion-input [(ngModel)]="data.price" type="number" name="price"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>ImageURL</ion-label>
+          <ion-input [(ngModel)]="imagerl" type="text" name="imageUrl"></ion-input>
+      </ion-item>
+      <ion-card>
+        <img [src]="imagerl" >
+      </ion-card>
+          
+      
       
     </ion-list>
     <button ion-button type="submit">Save</button>
