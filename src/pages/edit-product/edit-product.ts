@@ -1,3 +1,4 @@
+import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { ProductService } from './../../service/product.service';
 import { Product } from './../../models/product.model';
@@ -12,21 +13,16 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 export class EditProductPage implements OnInit{
   mode='New';
   data:Product;
-  constructor(private productService: ProductService,private navParams:NavParams) {
+  key: string;
+  constructor(
+    private productService: ProductService,
+    private navCtrl: NavController,
+    private navParams:NavParams) {
     
   }
   imagerl="";
   onAddProduct(form: NgForm) {
-    if(this.mode=='Edit') {
-      this.productService.onEdit(
-        form.value.id,
-        form.value.company,
-        form.value.type,
-        form.value.subtype,
-        form.value.price,
-        form.value.imageUrl
-      )
-    }
+    
     console.log(form.value);
     this.productService.onAdd(
       form.value.id,
@@ -44,8 +40,38 @@ export class EditProductPage implements OnInit{
     this.imagerl=form.value.imageUrl;
     
   }
+  onDeleteProduct() {
+    this.productService.onDelete(this.data.company,this.data.type, this.data.subtype,this.key)
+    .subscribe(
+      () => console.log('success'),
+      error => {
+        console.log(error);
+      }
+    );
+    this.navCtrl.pop();
+  }
+  onEditProduct(form:NgForm) {
+    //console.log(form.value);
+    this.productService.onEdit(
+      form.value.id,
+      form.value.company,
+      form.value.type,
+      form.value.subtype,
+      form.value.price,
+      form.value.imageUrl,
+      this.key
+    ).subscribe(
+      () => console.log('success'),
+      error => {
+        console.log(error);
+      }
+    )
+    this.imagerl=form.value.imageUrl;
+  }
   ngOnInit () {
     this.mode=this.navParams.get('mode');
+    this.key = this.navParams.get('key');
+    console.log(this.key);
     this.data = new Product(
       this.navParams.get('id'),
       this.navParams.get('company'),

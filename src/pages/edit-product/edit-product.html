@@ -13,7 +13,7 @@
     <ion-list>
       <ion-item>
           <ion-label floating>Id</ion-label>
-          <ion-input ngModel type="number" name="id"></ion-input>
+          <ion-input ngModel type="text" name="id"></ion-input>
       </ion-item>
       <ion-item>
           <ion-label floating>Company</ion-label>
@@ -83,11 +83,11 @@
   </form>
 
 
-  <form #f="ngForm" (ngSubmit)="onAddProduct(f)" *ngIf="mode=='Edit'">
+  <form #f="ngForm" (ngSubmit)="onEditProduct(f)" *ngIf="mode=='Edit'">
     <ion-list>
       <ion-item>
           <ion-label floating>Id</ion-label>
-          <ion-input [(ngModel)]="data.id" type="number" name="id" ></ion-input>
+          <ion-input [(ngModel)]="data.id" type="text" name="id" ></ion-input>
       </ion-item>
       <ion-item>
           <ion-label floating>Company</ion-label>
@@ -147,12 +147,13 @@
           <ion-input [(ngModel)]="imagerl" type="text" name="imageUrl"></ion-input>
       </ion-item>
       <ion-card>
-        <img [src]="imagerl" >
+        <img [src]="data.imagerl" >
       </ion-card>
           
       
       
     </ion-list>
     <button ion-button type="submit">Save</button>
+    <button ion-button color="danger" type="button" (click)="onDeleteProduct()">Delete</button>
   </form>
 </ion-content>

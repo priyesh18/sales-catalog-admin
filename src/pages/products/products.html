@@ -9,14 +9,15 @@
 
 
 <ion-content padding>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
     <ion-item-divider color="primary">Single Burner</ion-item-divider>
-   <button ion-item *ngFor="let s of sib" (click)="onEdit(s.id,s.price,s.image,'Single')">{{s.id}}</button>
+   <button ion-item *ngFor="let s of sib" (click)="onEdit(s.id,s.price,s.image,'Single', s.$key)">{{s.id}}</button>
    <ion-item-divider color="primary">Double Burner</ion-item-divider>
-   <button ion-item *ngFor="let d of dib" (click)="onEdit(d.id,d.price,d.image,'Double')">{{d.id}}</button>
+   <button ion-item *ngFor="let d of dib" (click)="onEdit(d.id,d.price,d.image,'Double',d.$key)">{{d.id}}</button>
    <ion-item-divider color="primary">Triple Burner</ion-item-divider>
-   <button ion-item *ngFor="let t of tib" (click)="onEdit(t.id,t.price,t.image,'Triple')">{{t.id}}</button>
+   <button ion-item *ngFor="let t of tib" (click)="onEdit(t.id,t.price,t.image,'Triple',t.$key)">{{t.id}}</button>
    <ion-item-divider color="primary">Four Burner</ion-item-divider>
-   <button ion-item *ngFor="let f of fib" (click)="onEdit(f.id,f.price,f.image,'Four')">{{f.id}}</button>
+   <button ion-item *ngFor="let f of fib" (click)="onEdit(f.id,f.price,f.image,'Four',f.$key)">{{f.id}}</button>
   </ion-list>
 </ion-content>
