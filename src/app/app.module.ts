@@ -1,3 +1,6 @@
+import { LoginPage } from './../pages/login/login';
+import { UserService } from './../service/user.service';
+import { Camera } from '@ionic-native/camera';
 import { ProductService } from './../service/product.service';
 import { EditProductPage } from './../pages/edit-product/edit-product';
 import { ProductsPage } from './../pages/products/products';
@@ -17,6 +20,7 @@ import { ProductListPage } from '../pages/product-list/product-list';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthService } from '../service/auth.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC9eYTtyWNtxxjYNJmqPWR00q6zeCjZNMQ",
@@ -36,7 +40,8 @@ export const firebaseConfig = {
     ProductListPage,
     ProductsPage,
     EditProductPage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -54,15 +59,18 @@ export const firebaseConfig = {
     ProductListPage,
     ProductsPage,
     EditProductPage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     ProductService,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AngularFireDatabase,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    UserService,
+    AuthService
   ]
 })
 export class AppModule {}

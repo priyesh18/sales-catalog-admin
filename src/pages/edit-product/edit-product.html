@@ -12,7 +12,7 @@
   <form #f="ngForm" (ngSubmit)="onAddProduct(f)" *ngIf="mode=='New'">
     <ion-list>
       <ion-item>
-          <ion-label floating>Id</ion-label>
+          <ion-label floating>Model</ion-label>
           <ion-input ngModel type="text" name="id"></ion-input>
       </ion-item>
       <ion-item>
@@ -32,7 +32,6 @@
             </ion-option>
           </ion-select>
       </ion-item>
-      
        
       <ion-item>
           <ion-label floating>Type</ion-label>
@@ -69,18 +68,36 @@
         <ion-input ngModel type="number" name="price"></ion-input>
       </ion-item>
       <ion-item>
-          <ion-label floating>ImageURL</ion-label>
-          <ion-input [(ngModel)]="imagerl" type="text" name="imageUrl"></ion-input>
+        <ion-label floating>Description</ion-label>
+        <ion-input ngModel type="text" name="description"></ion-input>
       </ion-item>
-      <ion-card>
-        <img [src]="imagerl" >
-      </ion-card>
-          
-          
       
+      <ion-item>
+          <ion-row>
+            <ion-col>
+              <button ion-button color="danger" type="button" full round (click)="takePhoto()">
+                  <ion-icon name="md-camera"></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button color="secondary" type="button" full round  (click)="selectPhoto()">
+                  <ion-icon name="md-image"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      <ion-card>
+        <img [src]="data.imageUrl" >
+      </ion-card>
+ 
     </ion-list>
     <button ion-button type="submit">Save</button>
   </form>
+
+
+
+
+
 
 
   <form #f="ngForm" (ngSubmit)="onEditProduct(f)" *ngIf="mode=='Edit'">
@@ -106,8 +123,7 @@
             </ion-option>
           </ion-select>
       </ion-item>
-      
-       
+         
       <ion-item>
           <ion-label floating>Type</ion-label>
           <ion-select [(ngModel)]="data.type" name="type">
@@ -142,16 +158,25 @@
         <ion-label floating>Price</ion-label>
         <ion-input [(ngModel)]="data.price" type="number" name="price"></ion-input>
       </ion-item>
+      
       <ion-item>
-          <ion-label floating>ImageURL</ion-label>
-          <ion-input [(ngModel)]="imagerl" type="text" name="imageUrl"></ion-input>
-      </ion-item>
+          <ion-row>
+            <ion-col>
+              <button ion-button color="primary" type="button" full round  (click)="takePhoto()">
+                          <ion-icon name="md-camera"></ion-icon>
+                      </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button color="secondary" type="button" full round  (click)="selectPhoto()">
+                <ion-icon name="md-image"></ion-icon>
+            </button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
       <ion-card>
-        <img [src]="data.imagerl" >
+        <img [src]="data.imageUrl" >
       </ion-card>
-          
-      
-      
+
     </ion-list>
     <button ion-button type="submit">Save</button>
     <button ion-button color="danger" type="button" (click)="onDeleteProduct()">Delete</button>

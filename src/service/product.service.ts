@@ -37,7 +37,24 @@ export class ProductService {
             return response.json();
         })
     }
-    getAll(company: string, type: string, subtype: string) {
-        return this.db.list('/product-list/'+company+'/'+type+'/'+subtype);
-    }
+    
+    create(product) { 
+        return this.db.list('/products').push(product);
+      } 
+      getAll(company: string, type: string, subtype: string) {//the args are temp
+        return this.db.list('/products');
+      }
+      
+      get(productId) { 
+        return this.db.object('/products/' + productId);
+      }
+    
+      update(productId, product) { 
+        return this.db.object('/products/' + productId).update(product);
+      }
+    
+      delete(productId) { 
+        return this.db.object('/products/' + productId).remove();
+      }
+         
 }
