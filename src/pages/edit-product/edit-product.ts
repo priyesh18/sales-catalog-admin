@@ -4,7 +4,6 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { ProductService } from './../../service/product.service';
 import { Product } from './../../models/product.model';
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import firebase from 'firebase';
@@ -31,7 +30,18 @@ export class EditProductPage implements OnInit{
     private navParams:NavParams) {
       this.myPhotosRef = firebase.storage().ref('/Photos/');
   }
-  imageUrl="";
+
+  ngOnInit () {
+    this.mode=this.navParams.get('mode');
+    this.key = this.navParams.get('key');
+    this.categories$ = this.categoryService.getAll();
+   
+    this.productService.get(this.key).subscribe(product => {
+      this.data = product;
+      this.imageRef = this.data.image;
+    })
+  }
+
   onAddProduct(product) {
     product["image"] = this.myPhotoURL;
     product["search"] = product.id+product.company+product.type+product.subtype+product.description;
@@ -39,8 +49,7 @@ export class EditProductPage implements OnInit{
    const promise = this.productService.create(product);
    promise.then(_ => console.log('success'))
    .catch(err => console.log(err, 'You do not have access!'));
-
-    
+ 
   }
   onDeleteProduct() {
     this.deletePhoto();
@@ -50,6 +59,7 @@ export class EditProductPage implements OnInit{
     
     this.navCtrl.pop();
   }
+
   onEditProduct(product) {
     this.deletePhoto();
     product["image"] = this.myPhotoURL;
@@ -60,20 +70,6 @@ export class EditProductPage implements OnInit{
    .catch(err => console.log(err, 'You do not have access!'));
 
   }
-  ngOnInit () {
-    this.mode=this.navParams.get('mode');
-    this.key = this.navParams.get('key');
-    this.categories$ = this.categoryService.getAll();
-   
-    this.productService.get(this.key).subscribe(product => {
-      this.data = product;
-      this.imageRef = this.data.image;
-    })
-    
-    console.log(this.imageRef);
-
-  }
-
 
   takePhoto() {
     const options:CameraOptions = {
@@ -110,6 +106,7 @@ export class EditProductPage implements OnInit{
       console.log("ERROR -> " + JSON.stringify(error));
     });
   }
+
   private deletePhoto() {
     // Create a reference to the file to delete
     console.log(this.imageRef);
@@ -118,11 +115,8 @@ export class EditProductPage implements OnInit{
      console.log(name);
 
     this.myPhotosRef.child(name)
-    // Delete the file
     .delete().then(function() {
-      // File deleted successfully
     }).catch(function(error) {
-      // Uh-oh, an error occurred!
     });
   }
  
@@ -134,6 +128,7 @@ export class EditProductPage implements OnInit{
         this.data.image = savedPicture.downloadURL;
       });
   }
+  
   private generateUUID(): any {
       var d = new Date().getTime();
       var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function (c) {

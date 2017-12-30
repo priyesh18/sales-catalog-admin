@@ -19,10 +19,11 @@ export class ProductListPage {
   }
 
  editProductPage = EditProductPage;
+ 
  onClick(page: Object) {
-   //console.log(page);
    this.navCtrl.push(ProductsPage,page);
  }
+
  logout() {
   this.auth.logout(); 
 }

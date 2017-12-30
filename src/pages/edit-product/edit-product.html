@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar>
@@ -12,47 +11,47 @@
   <form #f="ngForm" (ngSubmit)="onAddProduct(f.value)" *ngIf="mode=='New'">
     <ion-list>
       <ion-item>
-          <ion-label floating>Model</ion-label>
-          <ion-input ngModel type="text" name="id"></ion-input>
+        <ion-label floating>Model</ion-label>
+        <ion-input ngModel type="text" name="id"></ion-input>
       </ion-item>
       <ion-item>
-          <ion-label floating>Company</ion-label>
-          <ion-select ngModel name="company">
-            <ion-option *ngFor="let c of categories$ | async" [value]="c.$key">
-              {{c.name}}
-            </ion-option>
-          </ion-select>
+        <ion-label floating>Company</ion-label>
+        <ion-select ngModel name="company">
+          <ion-option *ngFor="let c of categories$ | async" [value]="c.$key">
+            {{c.name}}
+          </ion-option>
+        </ion-select>
       </ion-item>
-       
+
       <ion-item>
-          <ion-label floating>Type</ion-label>
-          <ion-select ngModel name="type">
-            <ion-option value="Steel">
-              Steel
-            </ion-option>
-            <ion-option value="Glass">
-              Glass
-            </ion-option>
-            
-          </ion-select>
+        <ion-label floating>Type</ion-label>
+        <ion-select ngModel name="type">
+          <ion-option value="Steel">
+            Steel
+          </ion-option>
+          <ion-option value="Glass">
+            Glass
+          </ion-option>
+
+        </ion-select>
       </ion-item>
-          
+
       <ion-item>
-          <ion-label floating>Subtype</ion-label>
-          <ion-select ngModel name="subtype">
-            <ion-option value="Single">
-              Single
-            </ion-option>
-            <ion-option value="Double">
-              Double
-            </ion-option>
-            <ion-option value="Triple">
-              Triple
-            </ion-option>
-            <ion-option value="Four">
-              Four
-            </ion-option>
-          </ion-select>
+        <ion-label floating>Subtype</ion-label>
+        <ion-select ngModel name="subtype">
+          <ion-option value="Single">
+            Single
+          </ion-option>
+          <ion-option value="Double">
+            Double
+          </ion-option>
+          <ion-option value="Triple">
+            Triple
+          </ion-option>
+          <ion-option value="Four">
+            Four
+          </ion-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label floating>Price</ion-label>
@@ -62,25 +61,25 @@
         <ion-label floating>Description</ion-label>
         <ion-input ngModel type="text" name="description"></ion-input>
       </ion-item>
-      
+
       <ion-item>
-          <ion-row>
-            <ion-col>
-              <button ion-button color="danger" type="button" full round (click)="takePhoto()">
-                  <ion-icon name="md-camera"></ion-icon>
-              </button>
-            </ion-col>
-            <ion-col>
-              <button ion-button color="secondary" type="button" full round  (click)="selectPhoto()">
-                  <ion-icon name="md-image"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-        </ion-item>
+        <ion-row>
+          <ion-col>
+            <button ion-button color="danger" type="button" full round (click)="takePhoto()">
+              <ion-icon name="md-camera"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button color="secondary" type="button" full round (click)="selectPhoto()">
+              <ion-icon name="md-image"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-item>
       <ion-card>
-        <img [src]="myPhotoURL" >
+        <img [src]="myPhotoURL">
       </ion-card>
- 
+
     </ion-list>
     <button ion-button type="submit">Save</button>
   </form>
@@ -94,73 +93,73 @@
   <form #f="ngForm" (ngSubmit)="onEditProduct(f.value)" *ngIf="mode=='Edit'">
     <ion-list>
       <ion-item>
-          <ion-label floating>Id</ion-label>
-          <ion-input [(ngModel)]="data.id" type="text" name="id" ></ion-input>
+        <ion-label floating>Id</ion-label>
+        <ion-input [(ngModel)]="data.id" type="text" name="id"></ion-input>
       </ion-item>
       <ion-item>
-          <ion-label floating>Company</ion-label>
-          <ion-select [(ngModel)]="data.company" name="company">
-              <ion-option *ngFor="let c of categories$ | async" [value]="c.$key">
-                {{c.name}}
-              </ion-option>
-            </ion-select>
+        <ion-label floating>Company</ion-label>
+        <ion-select [(ngModel)]="data.company" name="company">
+          <ion-option *ngFor="let c of categories$ | async" [value]="c.$key">
+            {{c.name}}
+          </ion-option>
+        </ion-select>
       </ion-item>
-         
+
       <ion-item>
-          <ion-label floating>Type</ion-label>
-          <ion-select [(ngModel)]="data.type" name="type">
-            <ion-option value="Steel">
-              Steel
-            </ion-option>
-            <ion-option value="Glass">
-              Glass
-            </ion-option>
-            
-          </ion-select>
+        <ion-label floating>Type</ion-label>
+        <ion-select [(ngModel)]="data.type" name="type">
+          <ion-option value="Steel">
+            Steel
+          </ion-option>
+          <ion-option value="Glass">
+            Glass
+          </ion-option>
+
+        </ion-select>
       </ion-item>
-          
+
       <ion-item>
-          <ion-label floating>Subtype</ion-label>
-          <ion-select [(ngModel)]="data.subtype" name="subtype">
-            <ion-option value="Single">
-              Single
-            </ion-option>
-            <ion-option value="Double">
-              Double
-            </ion-option>
-            <ion-option value="Triple">
-              Triple
-            </ion-option>
-            <ion-option value="Four">
-              Four
-            </ion-option>
-          </ion-select>
+        <ion-label floating>Subtype</ion-label>
+        <ion-select [(ngModel)]="data.subtype" name="subtype">
+          <ion-option value="Single">
+            Single
+          </ion-option>
+          <ion-option value="Double">
+            Double
+          </ion-option>
+          <ion-option value="Triple">
+            Triple
+          </ion-option>
+          <ion-option value="Four">
+            Four
+          </ion-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label floating>Price</ion-label>
         <ion-input [(ngModel)]="data.price" type="number" name="price"></ion-input>
       </ion-item>
       <ion-item>
-          <ion-label floating>Description</ion-label>
-          <ion-input [(ngModel)]="data.description" type="text" name="description"></ion-input>
-        </ion-item>
-      
+        <ion-label floating>Description</ion-label>
+        <ion-input [(ngModel)]="data.description" type="text" name="description"></ion-input>
+      </ion-item>
+
       <ion-item>
-          <ion-row>
-            <ion-col>
-              <button ion-button color="primary" type="button" full round  (click)="takePhoto()">
-                          <ion-icon name="md-camera"></ion-icon>
-                      </button>
-            </ion-col>
-            <ion-col>
-              <button ion-button color="secondary" type="button" full round  (click)="selectPhoto()">
-                <ion-icon name="md-image"></ion-icon>
+        <ion-row>
+          <ion-col>
+            <button ion-button color="primary" type="button" full round (click)="takePhoto()">
+              <ion-icon name="md-camera"></ion-icon>
             </button>
-            </ion-col>
-          </ion-row>
-        </ion-item>
+          </ion-col>
+          <ion-col>
+            <button ion-button color="secondary" type="button" full round (click)="selectPhoto()">
+              <ion-icon name="md-image"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-item>
       <ion-card>
-        <img [src]="data.image" >
+        <img [src]="data.image">
       </ion-card>
 
     </ion-list>

@@ -1,6 +1,4 @@
-import { Stove } from './../../models/stove.model';
 import { EditProductPage } from './../edit-product/edit-product';
-
 import { ProductService } from './../../service/product.service';
 import { Component } from '@angular/core';
 import { NavParams, NavController } from 'ionic-angular';
@@ -31,14 +29,14 @@ export class ProductsPage  implements OnInit {
   ngOnInit () {
     this.company = this.navParams.get('company');
     this.type = this.navParams.get('type');
-    //console.log(this.company,this.type);
   }
+
   ionViewWillEnter() {
       
-  this.productService.getByCompany(this.company).subscribe(products => {
-  this.allProducts = products;
- 
-  this.companyProducts = this.allProducts.filter(p => p.type === this.type);
+    this.productService.getByCompany(this.company).subscribe(products => {
+    this.allProducts = products;
+  
+    this.companyProducts = this.allProducts.filter(p => p.type === this.type);
     this.filteredProducts = this.companyProducts; 
   })
 

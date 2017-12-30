@@ -19,21 +19,21 @@
 
     <ion-item-divider color="primary">Double Burner</ion-item-divider>
     <div *ngFor="let p of filteredProducts">
-        <button ion-item *ngIf="p.subtype=='Double'" (click)="onEdit(p.$key)">
-          {{p.id}}
-        </button>
-      </div>
+      <button ion-item *ngIf="p.subtype=='Double'" (click)="onEdit(p.$key)">
+        {{p.id}}
+      </button>
+    </div>
     <ion-item-divider color="primary">Triple Burner</ion-item-divider>
     <div *ngFor="let p of filteredProducts">
-        <button ion-item *ngIf="p.subtype=='Triple'" (click)="onEdit(p.$key)">
-          {{p.id}}
-        </button>
-      </div>
+      <button ion-item *ngIf="p.subtype=='Triple'" (click)="onEdit(p.$key)">
+        {{p.id}}
+      </button>
+    </div>
     <ion-item-divider color="primary">Four Burner</ion-item-divider>
     <div *ngFor="let p of filteredProducts">
-        <button ion-item *ngIf="p.subtype=='Four'" (click)="onEdit(p.$key)">
-          {{p.id}}
-        </button>
-      </div>
-      </ion-list>
+      <button ion-item *ngIf="p.subtype=='Four'" (click)="onEdit(p.$key)">
+        {{p.id}}
+      </button>
+    </div>
+  </ion-list>
 </ion-content>
