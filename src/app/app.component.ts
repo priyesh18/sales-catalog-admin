@@ -13,7 +13,7 @@ import { AuthService } from '../service/auth.service';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any = TabsPage;
 
   constructor(
     platform: Platform, 

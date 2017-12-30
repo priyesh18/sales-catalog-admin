@@ -1,9 +1,11 @@
-export class Product {
-    constructor(
-        public id: string, 
-        public company: string, 
-        public type: string, 
-        public subtype: string, 
-        public price: number,
-        public imageUrl: string) {}
+export interface Product {
+    $key: string;
+    id: string;
+    description: string;
+    company: string;
+    type: string;
+    subtype: string;
+    price: number;
+    image: string;
+    search: string;
 }

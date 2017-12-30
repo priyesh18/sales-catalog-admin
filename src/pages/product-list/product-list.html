@@ -12,43 +12,19 @@
 
 </ion-header>
 
-
 <ion-content padding>
   <ion-list>
+    <div *ngFor="let c of categories$ | async">
     <ion-item-divider color="primary">
-      SURYA CARE
+      {{c.name}}
     </ion-item-divider>
-    <button ion-item (click)="onClick({company:'SuryaCare',type:'Glass'})">
+    <button ion-item (click)="onClick({company:c.$key,type:'Glass'})">
       Glass
     </button>
-    <button ion-item (click)="onClick({company:'SuryaCare',type:'Steel'})">
+    <button ion-item (click)="onClick({company:c.$key,type:'Steel'})">
       Steel
     </button>
-    
-  
-  <ion-item-divider color="primary">
-    SURYA SIDDHI
-  </ion-item-divider>
-  <button ion-item (click)="onClick({company:'SuryaSiddhi',type:'Glass'})">
-    Glass
-  </button>
-  <button ion-item (click)="onClick({company:'SuryaSiddhi',type:'Steel'})">
-    Steel
-  </button>
-
-  <ion-item-divider color="primary">
-    SURYA URJA
-  </ion-item-divider>
-  <button ion-item (click)="onClick({company:'SuryaUrja',type:'Steel'})">
-    Steel
-  </button>
-
-  <ion-item-divider color="primary">
-    SURYA CLASSIC
-  </ion-item-divider>
-  <button ion-item (click)="onClick({company:'SuryaClassic',type:'Steel'})">
-    Steel
-  </button>
+  </div>
 </ion-list>
 <button ion-button block outline
   (click)="logout()"

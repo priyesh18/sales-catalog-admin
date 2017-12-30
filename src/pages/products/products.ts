@@ -5,8 +5,7 @@ import { ProductService } from './../../service/product.service';
 import { Component } from '@angular/core';
 import { NavParams, NavController } from 'ionic-angular';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-
-
+import { Product } from '../../models/product.model';
 
 
 @Component({
@@ -17,16 +16,9 @@ export class ProductsPage  implements OnInit {
   type: string;
   company: string;
   searchQuery: string = '';
-  key: string;
-  sib: Stove[];
-  dib: Stove[];
-  tib: Stove[];
-  fib: Stove[];
-  sib2: Stove[];
-  dib2: Stove[];
-  tib2: Stove[];
-  fib2: Stove[];
-  
+  allProducts: Product[];
+  filteredProducts:Product[];
+  companyProducts: Product[];
   
   constructor(
     public navParams: NavParams,
@@ -42,73 +34,28 @@ export class ProductsPage  implements OnInit {
     //console.log(this.company,this.type);
   }
   ionViewWillEnter() {
-     this.productService.getAll(this.company,this.type,'Single').subscribe(products => {
-      this.sib = products;
-      this.sib2 = products;
-      console.log(this.sib);
-     });
-
-     this.productService.getAll(this.company,this.type,'Double').subscribe(products => {
-      this.dib = products;
-      this.dib2 = products;
-      console.log(this.dib);
-     });
-
-     this.productService.getAll(this.company,this.type,'Triple').subscribe(products => {
-      this.tib = products;
-      this.tib2 = products;
-      console.log(this.tib);
-     });
-
-     this.productService.getAll(this.company,this.type,'Four').subscribe(products => {
-      this.fib = products;
-      this.fib2 = products;
-      console.log(this.fib);
-     });
       
-
+  this.productService.getByCompany(this.company).subscribe(products => {
+  this.allProducts = products;
+ 
+  this.companyProducts = this.allProducts.filter(p => p.type === this.type);
+    this.filteredProducts = this.companyProducts; 
+  })
 
   }
-  onEdit(id: number, price: string, image: string, subtype: string, key: string) {
+  
+  onEdit(key: string) {
     this.navCtrl.push(EditProductPage,{
-      id:id,
-      price: price,
-      company: this.company,
-      type: this.type,
-      subtype: subtype,
-      image: image,
       mode: 'Edit',
       key: key
     })
   }
-  initializeItems() {
-    this.sib = this.sib2;
-    this.dib = this.dib2;
-    this.tib = this.tib2;
-    this.fib = this.fib2;
-  }
-  
-  getItems(ev: any) {
-    // Reset items back to all of the items
-    this.initializeItems();
 
-    // set val to the value of the searchbar
+  filter(ev: any) {
+
     let val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.sib = this.sib.filter((item) => {
-        return (item.id.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-      this.dib = this.dib.filter((item) => {
-        return (item.id.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-      this.tib = this.tib.filter((item) => {
-        return (item.id.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-      this.fib = this.fib.filter((item) => {
-        return (item.id.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    }
+    this.filteredProducts = (val) ?
+      this.companyProducts.filter(p => p.id.toLowerCase().includes(val.toLowerCase())) :
+      this.companyProducts;
 }
 }

@@ -56,5 +56,14 @@ export class ProductService {
       delete(productId) { 
         return this.db.object('/products/' + productId).remove();
       }
+
+      getByCompany(company) { 
+        return this.db.list('/products/', {
+          query: {
+            orderByChild: 'company',
+            equalTo: company 
+          }
+        });
+      }
          
 }

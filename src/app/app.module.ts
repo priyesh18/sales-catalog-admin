@@ -1,3 +1,4 @@
+import { CategoryService } from './../service/category.service';
 import { LoginPage } from './../pages/login/login';
 import { UserService } from './../service/user.service';
 import { Camera } from '@ionic-native/camera';
@@ -70,7 +71,8 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AngularFireDatabase,
     UserService,
-    AuthService
+    AuthService,
+    CategoryService
   ]
 })
 export class AppModule {}

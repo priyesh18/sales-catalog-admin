@@ -9,7 +9,7 @@
 
 
 <ion-content padding>
-  <form #f="ngForm" (ngSubmit)="onAddProduct(f)" *ngIf="mode=='New'">
+  <form #f="ngForm" (ngSubmit)="onAddProduct(f.value)" *ngIf="mode=='New'">
     <ion-list>
       <ion-item>
           <ion-label floating>Model</ion-label>
@@ -18,17 +18,8 @@
       <ion-item>
           <ion-label floating>Company</ion-label>
           <ion-select ngModel name="company">
-            <ion-option value="SuryaCare">
-              Surya Care
-            </ion-option>
-            <ion-option value="SuryaSiddhi">
-              Surya Siddhi
-            </ion-option>
-            <ion-option value="SuryaUrja">
-                  Surya Urja
-            </ion-option>
-            <ion-option value="SuryaClassic">
-                  Surya Classic
+            <ion-option *ngFor="let c of categories$ | async" [value]="c.$key">
+              {{c.name}}
             </ion-option>
           </ion-select>
       </ion-item>
@@ -87,7 +78,7 @@
           </ion-row>
         </ion-item>
       <ion-card>
-        <img [src]="data.imageUrl" >
+        <img [src]="myPhotoURL" >
       </ion-card>
  
     </ion-list>
@@ -100,7 +91,7 @@
 
 
 
-  <form #f="ngForm" (ngSubmit)="onEditProduct(f)" *ngIf="mode=='Edit'">
+  <form #f="ngForm" (ngSubmit)="onEditProduct(f.value)" *ngIf="mode=='Edit'">
     <ion-list>
       <ion-item>
           <ion-label floating>Id</ion-label>
@@ -109,19 +100,10 @@
       <ion-item>
           <ion-label floating>Company</ion-label>
           <ion-select [(ngModel)]="data.company" name="company">
-            <ion-option value="SuryaCare">
-              Surya Care
-            </ion-option>
-            <ion-option value="SuryaSiddhi">
-              Surya Siddhi
-            </ion-option>
-            <ion-option value="SuryaUrja">
-                  Surya Urja
-            </ion-option>
-            <ion-option value="SuryaClassic">
-                  Surya Classic
-            </ion-option>
-          </ion-select>
+              <ion-option *ngFor="let c of categories$ | async" [value]="c.$key">
+                {{c.name}}
+              </ion-option>
+            </ion-select>
       </ion-item>
          
       <ion-item>
@@ -158,6 +140,10 @@
         <ion-label floating>Price</ion-label>
         <ion-input [(ngModel)]="data.price" type="number" name="price"></ion-input>
       </ion-item>
+      <ion-item>
+          <ion-label floating>Description</ion-label>
+          <ion-input [(ngModel)]="data.description" type="text" name="description"></ion-input>
+        </ion-item>
       
       <ion-item>
           <ion-row>
@@ -174,7 +160,7 @@
           </ion-row>
         </ion-item>
       <ion-card>
-        <img [src]="data.imageUrl" >
+        <img [src]="data.image" >
       </ion-card>
 
     </ion-list>
