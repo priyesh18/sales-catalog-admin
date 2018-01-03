@@ -1,3 +1,4 @@
+import { environment } from './../environment/environment';
 import { CategoryService } from './../service/category.service';
 import { LoginPage } from './../pages/login/login';
 import { UserService } from './../service/user.service';
@@ -23,14 +24,14 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from '../service/auth.service';
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyC9eYTtyWNtxxjYNJmqPWR00q6zeCjZNMQ",
-    authDomain: "triveni-b663b.firebaseapp.com",
-    databaseURL: "https://triveni-b663b.firebaseio.com",
-    projectId: "triveni-b663b",
-    storageBucket: "triveni-b663b.appspot.com",
-    messagingSenderId: "640003599792"
-};
+// export const firebaseConfig = {
+//   apiKey: "AIzaSyC9eYTtyWNtxxjYNJmqPWR00q6zeCjZNMQ",
+//     authDomain: "triveni-b663b.firebaseapp.com",
+//     databaseURL: "https://triveni-b663b.firebaseio.com",
+//     projectId: "triveni-b663b",
+//     storageBucket: "triveni-b663b.appspot.com",
+//     messagingSenderId: "640003599792"
+// };
 
 
 @NgModule({
@@ -48,7 +49,7 @@ export const firebaseConfig = {
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],

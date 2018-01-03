@@ -1,3 +1,4 @@
+import { environment } from './../environment/environment';
 import { LoginPage } from './../pages/login/login';
 import { UserService } from './../service/user.service';
 import { TabsPage } from './../pages/tabs/tabs';
@@ -23,14 +24,7 @@ export class MyApp {
     private userService: UserService
   ) {
     if (!firebase.apps.length) {
-      firebase.initializeApp({
-        apiKey: "AIzaSyC9eYTtyWNtxxjYNJmqPWR00q6zeCjZNMQ",
-        authDomain: "triveni-b663b.firebaseapp.com",
-        databaseURL: "https://triveni-b663b.firebaseio.com",
-        projectId: "triveni-b663b",
-        storageBucket: "triveni-b663b.appspot.com",
-        messagingSenderId: "640003599792"
-      });
+      firebase.initializeApp(environment.firebase);
   }
     auth.user$.subscribe(user => {
       if (!user) return; 
