@@ -1,25 +1,37 @@
+import { ToastController } from 'ionic-angular/components/toast/toast-controller';
+import { OrderService } from './../../service/order.service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
-/**
- * Generated class for the OrderListPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-order-list',
   templateUrl: 'order-list.html',
 })
-export class OrderListPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+export class OrderListPage implements OnInit {
+  private toast;
+  private allOrders;
+  
+  constructor(private orderService:OrderService,private toastCtrl: ToastController) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OrderListPage');
+  ngOnInit() {
+    this.orderService.getOrders().subscribe(orders => {
+      this.allOrders = orders;
+      console.log(this.allOrders);
+    })
   }
+deleteOrder(key) {
+  
+  this.orderService.deleteOrder(key).then(() => {
+    this.presentToast();
+  })
+}
+presentToast() {
+  this.toast = this.toastCtrl.create({
+    message: 'Order was deleted successfully ',
+    duration: 3000,
+    position: 'bottom'
+  });
+  this.toast.present();
+}
 
 }

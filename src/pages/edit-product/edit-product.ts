@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import firebase from 'firebase';
+import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
+import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 
 @Component({
   selector: 'page-edit-product',
@@ -19,6 +21,8 @@ export class EditProductPage implements OnInit{
   categories$;
   public myPhotosRef: any;
   public myPhoto: any;
+  private loader;
+  private toast;
   public myPhotoURL: any = "";
   public imageRef: string = "";
 
@@ -26,7 +30,9 @@ export class EditProductPage implements OnInit{
     private productService: ProductService,
     private categoryService: CategoryService,
     private navCtrl: NavController,
+    private loadingCtrl: LoadingController,
     private camera: Camera,
+    private toastCtrl: ToastController,
     private navParams:NavParams) {
       this.myPhotosRef = firebase.storage().ref('/Photos/');
   }
@@ -47,14 +53,18 @@ export class EditProductPage implements OnInit{
     product["search"] = product.id+product.company+product.type+product.subtype+product.description;
    // console.log(product);
    const promise = this.productService.create(product);
-   promise.then(_ => console.log('success'))
+   promise.then(_ => {
+     this.navCtrl.pop();
+     this.presentToast('Saved successfully');
+    }
+    )
    .catch(err => console.log(err, 'You do not have access!'));
  
   }
   onDeleteProduct() {
     this.deletePhoto();
     const promise = this.productService.delete(this.key);
-   promise.then(_ => console.log('success'))
+   promise.then(_ => this.presentToast('Product deleted successfully!'))
    .catch(err => console.log(err, 'You do not have access!'));
     
     this.navCtrl.pop();
@@ -62,11 +72,14 @@ export class EditProductPage implements OnInit{
 
   onEditProduct(product) {
     this.deletePhoto();
-    product["image"] = this.myPhotoURL;
+    product["image"] = (this.myPhotoURL == "")?this.data.image:this.myPhotoURL;
     product["search"] = product.id+product.company+product.type+product.subtype+product.description;
    // console.log(product);
    const promise = this.productService.update(this.key,product);
-   promise.then(_ => console.log('success'))
+   promise.then(_ => {
+    this.navCtrl.pop();
+    this.presentToast('Saved successfully');
+   })
    .catch(err => console.log(err, 'You do not have access!'));
 
   }
@@ -121,11 +134,13 @@ export class EditProductPage implements OnInit{
   }
  
   private uploadPhoto(): void {
+    this.presentLoading();
     this.myPhotosRef.child(this.generateUUID())
       .putString(this.myPhoto, 'base64', { contentType: 'image/jpeg' })
       .then((savedPicture) => {
         this.myPhotoURL = savedPicture.downloadURL;
         this.data.image = savedPicture.downloadURL;
+        this.loader.dismiss();
       });
   }
   
@@ -138,5 +153,20 @@ export class EditProductPage implements OnInit{
       });
       return uuid;
     }
+    presentLoading() {
+      this.loader = this.loadingCtrl.create({
+      content: "Uploading Photo...",
+      duration: 3000
+    });
+    this.loader.present();
+}
+presentToast(data) {
+  this.toast = this.toastCtrl.create({
+    message: data,
+    duration: 3000,
+    position: 'bottom'
+  });
+  this.toast.present();
+}
  
 }

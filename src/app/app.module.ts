@@ -1,3 +1,4 @@
+import { OrderService } from './../service/order.service';
 import { environment } from './../environment/environment';
 import { CategoryService } from './../service/category.service';
 import { LoginPage } from './../pages/login/login';
@@ -16,7 +17,6 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { OrderListPage } from '../pages/order-list/order-list';
-import { OrderPage } from '../pages/order/order';
 import { ProductListPage } from '../pages/product-list/product-list';
 
 import { AngularFireModule } from 'angularfire2';
@@ -24,21 +24,11 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from '../service/auth.service';
 
-// export const firebaseConfig = {
-//   apiKey: "AIzaSyC9eYTtyWNtxxjYNJmqPWR00q6zeCjZNMQ",
-//     authDomain: "triveni-b663b.firebaseapp.com",
-//     databaseURL: "https://triveni-b663b.firebaseio.com",
-//     projectId: "triveni-b663b",
-//     storageBucket: "triveni-b663b.appspot.com",
-//     messagingSenderId: "640003599792"
-// };
-
 
 @NgModule({
   declarations: [
     MyApp,
     OrderListPage,
-    OrderPage,
     ProductListPage,
     ProductsPage,
     EditProductPage,
@@ -57,7 +47,6 @@ import { AuthService } from '../service/auth.service';
   entryComponents: [
     MyApp,
     OrderListPage,
-    OrderPage,
     ProductListPage,
     ProductsPage,
     EditProductPage,
@@ -68,6 +57,7 @@ import { AuthService } from '../service/auth.service';
     StatusBar,
     SplashScreen,
     ProductService,
+    OrderService,
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AngularFireDatabase,
