@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import firebase from 'firebase';
 import { AuthService } from '../service/auth.service';
+import { FCM } from '@ionic-native/fcm';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class MyApp {
     statusBar: StatusBar, 
     splashScreen: SplashScreen,
     private auth: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private fcm: FCM
   ) {
     if (!firebase.apps.length) {
       firebase.initializeApp(environment.firebase);
@@ -33,6 +35,27 @@ export class MyApp {
     }) 
      
     platform.ready().then(() => {
+      //Notifications
+      fcm.subscribeToTopic('all');
+
+      fcm.getToken().then(token=>{
+      // backend.registerToken(token);
+          console.log(token);
+      })
+
+      fcm.onNotification().subscribe(data=>{
+        if(data.wasTapped){
+          console.log("Received in background");
+        } else {
+          console.log("Received in foreground");
+        };
+      })
+
+      fcm.onTokenRefresh().subscribe(token=>{
+        //backend.registerToken(token);
+        console.log(token);
+      });
+      //end notifications.
       statusBar.styleDefault();
       splashScreen.hide();
     });

@@ -14,6 +14,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http'; 
+import { FCM } from '@ionic-native/fcm';
+
 
 import { MyApp } from './app.component';
 import { OrderListPage } from '../pages/order-list/order-list';
@@ -59,6 +61,7 @@ import { AuthService } from '../service/auth.service';
     ProductService,
     OrderService,
     Camera,
+    FCM,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AngularFireDatabase,
     UserService,

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "640003599792",
+    "firebase_url": "https://triveni-b663b.firebaseio.com",
+    "project_id": "triveni-b663b",
+    "storage_bucket": "triveni-b663b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640003599792:android:411c33e0f1efd4a5",
+        "android_client_info": {
+          "package_name": "app.admin.ionic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640003599792-uc0pkhk459ssvrk42nietvs384dd3oqu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgCDVsoBZtuZ8zl1WY3F-3OaEXSQNlU_o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
