@@ -8,7 +8,7 @@
 
 
 <ion-content>
-  <ion-card *ngFor="let o of allOrders">
+  <ion-card *ngFor="let o of allOrders?.reverse()">
     <ion-card-header>
       <ion-grid>
           <ion-row>
@@ -18,10 +18,16 @@
               <ion-icon name="trash" color="danger"></ion-icon>
             </button>
           </ion-col>
+          <ion-col text-right>
+              <button icon-only ion-button outline (click)="doneOrder(o)">
+              <ion-icon name="done-all" color="danger"></ion-icon>
+            </button>
+          </ion-col>
           </ion-row>
+          
         <ion-row>
           <ion-col>{{o.userName}}</ion-col>
-          <ion-col>{{o.orderDate }}</ion-col>
+          <ion-col>{{o.orderDate | date }}</ion-col>
       </ion-row>
      
       </ion-grid>

@@ -1,3 +1,4 @@
+import { ChartsPage } from './../pages/charts/charts';
 import { OrderService } from './../service/order.service';
 import { environment } from './../environment/environment';
 import { CategoryService } from './../service/category.service';
@@ -32,6 +33,7 @@ import { AuthService } from '../service/auth.service';
     MyApp,
     OrderListPage,
     ProductListPage,
+    ChartsPage,
     ProductsPage,
     EditProductPage,
     TabsPage,
@@ -50,6 +52,7 @@ import { AuthService } from '../service/auth.service';
     MyApp,
     OrderListPage,
     ProductListPage,
+    ChartsPage,
     ProductsPage,
     EditProductPage,
     TabsPage,

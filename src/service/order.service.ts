@@ -9,4 +9,7 @@ export class OrderService {
     deleteOrder(key) {
         return this.db.object('/orders/' + key).remove();
     }
+    doneOrder(order) {
+        return this.db.list('/pastOrders').push(order);
+    }
 }

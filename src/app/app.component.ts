@@ -36,25 +36,27 @@ export class MyApp {
      
     platform.ready().then(() => {
       //Notifications
-      fcm.subscribeToTopic('all');
+      if (platform.is('cordova')) {
+        fcm.subscribeToTopic('all');
 
-      fcm.getToken().then(token=>{
-      // backend.registerToken(token);
+        fcm.getToken().then(token=>{
+        // backend.registerToken(token);
+            console.log(token);
+        })
+
+        fcm.onNotification().subscribe(data=>{
+          if(data.wasTapped){
+            console.log("Received in background");
+          } else {
+            console.log("Received in foreground");
+          };
+        })
+
+        fcm.onTokenRefresh().subscribe(token=>{
+          //backend.registerToken(token);
           console.log(token);
-      })
-
-      fcm.onNotification().subscribe(data=>{
-        if(data.wasTapped){
-          console.log("Received in background");
-        } else {
-          console.log("Received in foreground");
-        };
-      })
-
-      fcm.onTokenRefresh().subscribe(token=>{
-        //backend.registerToken(token);
-        console.log(token);
-      });
+        });
+      }
       //end notifications.
       statusBar.styleDefault();
       splashScreen.hide();

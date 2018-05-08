@@ -19,15 +19,23 @@ export class OrderListPage implements OnInit {
       console.log(this.allOrders);
     })
   }
+doneOrder(order) {
+  
+  this.orderService.doneOrder(order).then(() => {
+    this.presentToast("completed");
+    this.deleteOrder(order.$key);
+    console.log(order.$key);
+  })
+}
 deleteOrder(key) {
   
   this.orderService.deleteOrder(key).then(() => {
-    this.presentToast();
+    this.presentToast("deleted");
   })
 }
-presentToast() {
+presentToast(msg) {
   this.toast = this.toastCtrl.create({
-    message: 'Order was deleted successfully ',
+    message: "Order was "+msg+" successfully",
     duration: 3000,
     position: 'bottom'
   });
