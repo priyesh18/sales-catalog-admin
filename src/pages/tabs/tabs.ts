@@ -1,3 +1,4 @@
+import { PastOrdersPage } from './../past-orders/past-orders';
 import { ChartsPage } from './../charts/charts';
 import { ProductListPage } from './../product-list/product-list';
 import { Component } from '@angular/core';
@@ -12,4 +13,5 @@ export class TabsPage {
   private productList = ProductListPage;
   private orderList = OrderListPage;
   private charts = ChartsPage;
+  private pastOrders = PastOrdersPage;
 }

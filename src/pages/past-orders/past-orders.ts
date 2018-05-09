@@ -1,34 +1,36 @@
-import { ToastController } from 'ionic-angular/components/toast/toast-controller';
-import { OrderService } from './../../service/order.service';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { IonicPage, ToastController } from 'ionic-angular';
 
+import { OrderService } from '../../service/order.service';
+
+/**
+ * Generated class for the PastOrdersPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
-  selector: 'page-order-list',
-  templateUrl: 'order-list.html',
+  selector: 'page-past-orders',
+  templateUrl: 'past-orders.html',
 })
-export class OrderListPage implements OnInit {
+export class PastOrdersPage implements OnInit {
+
   private toast;
   private allOrders;
   
   constructor(private orderService:OrderService,private toastCtrl: ToastController) {
   }
   ngOnInit() {
-    this.orderService.getOrders().subscribe(orders => {
+    this.orderService.getPastOrders().subscribe(orders => {
       this.allOrders = orders;
+      
       console.log(this.allOrders);
     })
   }
-doneOrder(order) {
-  
-  //order.orderDate = Date.parse(order.orderDate);
-  console.log(order);
-  // this.orderService.doneOrder(order).then(() => {
-  //   this.presentToast("completed");
-  //   this.deleteOrder(order.$key);
-  //   console.log(order.$key);
-  // })
-}
+
 deleteOrder(key) {
   
   this.orderService.deleteOrder(key).then(() => {

@@ -1,3 +1,4 @@
+import { PastOrdersPage } from './../pages/past-orders/past-orders';
 import { ChartsPage } from './../pages/charts/charts';
 import { OrderService } from './../service/order.service';
 import { environment } from './../environment/environment';
@@ -37,6 +38,7 @@ import { AuthService } from '../service/auth.service';
     ProductsPage,
     EditProductPage,
     TabsPage,
+    PastOrdersPage,
     LoginPage
   ],
   imports: [
@@ -53,6 +55,7 @@ import { AuthService } from '../service/auth.service';
     OrderListPage,
     ProductListPage,
     ChartsPage,
+    PastOrdersPage,
     ProductsPage,
     EditProductPage,
     TabsPage,

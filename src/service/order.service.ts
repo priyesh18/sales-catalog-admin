@@ -12,4 +12,7 @@ export class OrderService {
     doneOrder(order) {
         return this.db.list('/pastOrders').push(order);
     }
+    getPastOrders() {
+        return this.db.list('/pastOrders/');
+    }
 }

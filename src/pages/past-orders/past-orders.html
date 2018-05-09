@@ -1,0 +1,49 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Past Orders</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card *ngFor="let o of allOrders?.reverse()">
+    <ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col>{{o.company}}</ion-col>
+          <ion-col text-right>
+            <button icon-only ion-button outline (click)="deleteOrder(o.$key)">
+              <ion-icon name="trash" color="danger"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>{{o.userName}}</ion-col>
+          <ion-col>{{o.orderDate | date }}</ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3 text-center>Model</ion-col>
+          <ion-col col-3 text-center>Quantity</ion-col>
+          <ion-col text-center>Notes</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let i of o.items">
+          <ion-col col-3 text-center>{{i.id}}</ion-col>
+          <ion-col col-3 text-center>{{i.quantity}}</ion-col>
+          <ion-col text-center>{{i.notes}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+
+
+  </ion-card>
+
+</ion-content>
