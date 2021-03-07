@@ -1,4 +1,4 @@
-import { environment } from './../environment/environment';
+import { firebaseConfig } from './../environment/environment';
 import { LoginPage } from './../pages/login/login';
 import { UserService } from './../service/user.service';
 import { TabsPage } from './../pages/tabs/tabs';
@@ -26,7 +26,7 @@ export class MyApp {
     private fcm: FCM
   ) {
     if (!firebase.apps.length) {
-      firebase.initializeApp(environment.firebase);
+      firebase.initializeApp(firebaseConfig);
   }
     auth.user$.subscribe(user => {
       if (!user) return; 

@@ -9,6 +9,9 @@ export class OrderService {
     deleteOrder(key) {
         return this.db.object('/orders/' + key).remove();
     }
+    deletePastOrder(key) {
+        return this.db.object('/pastOrders/' + key).remove();
+    }
     doneOrder(order) {
         return this.db.list('/pastOrders').push(order);
     }

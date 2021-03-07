@@ -1,7 +1,7 @@
 import { PastOrdersPage } from './../pages/past-orders/past-orders';
 import { ChartsPage } from './../pages/charts/charts';
 import { OrderService } from './../service/order.service';
-import { environment } from './../environment/environment';
+import { firebaseConfig } from './../environment/environment';
 import { CategoryService } from './../service/category.service';
 import { LoginPage } from './../pages/login/login';
 import { UserService } from './../service/user.service';
@@ -45,7 +45,7 @@ import { AuthService } from '../service/auth.service';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],

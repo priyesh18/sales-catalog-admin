@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>{{mode}} Product</ion-title>
   </ion-navbar>
 
@@ -8,6 +8,7 @@
 
 
 <ion-content padding>
+  <p ion-text color="danger">Cannot save items on the web. Cordova required for camera.</p>
   <form #f="ngForm" (ngSubmit)="onAddProduct(f.value)" *ngIf="mode=='New'">
     <ion-list>
       <ion-item>
@@ -81,7 +82,7 @@
       </ion-card>
 
     </ion-list>
-    <button ion-button type="submit">Save</button>
+    <button disabled ion-button full round type="submit">Save</button>
   </form>
 
 
@@ -163,7 +164,7 @@
       </ion-card>
 
     </ion-list>
-    <button ion-button type="submit">Save</button>
-    <button ion-button color="danger" type="button" (click)="onDeleteProduct()">Delete</button>
+    <button disabled ion-button color="secondary" type="submit">Save</button>
+    <button disabled ion-button color="danger" type="button" (click)="onDeleteProduct()">Delete</button>
   </form>
 </ion-content>

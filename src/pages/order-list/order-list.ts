@@ -16,23 +16,22 @@ export class OrderListPage implements OnInit {
   ngOnInit() {
     this.orderService.getOrders().subscribe(orders => {
       this.allOrders = orders;
-      console.log(this.allOrders);
     })
   }
 doneOrder(order) {
   
-  //order.orderDate = Date.parse(order.orderDate);
+  order.orderDate = Date.parse(order.orderDate);
   console.log(order);
-  // this.orderService.doneOrder(order).then(() => {
-  //   this.presentToast("completed");
-  //   this.deleteOrder(order.$key);
-  //   console.log(order.$key);
-  // })
+  this.orderService.doneOrder(order).then(() => {
+    this.presentToast("completed");
+    this.deleteOrder(order.$key);
+    console.log(order.$key);
+  })
 }
 deleteOrder(key) {
   
   this.orderService.deleteOrder(key).then(() => {
-    this.presentToast("deleted");
+    this.presentToast("moved to History");
   })
 }
 presentToast(msg) {

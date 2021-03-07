@@ -27,13 +27,12 @@ export class PastOrdersPage implements OnInit {
     this.orderService.getPastOrders().subscribe(orders => {
       this.allOrders = orders;
       
-      console.log(this.allOrders);
     })
   }
 
 deleteOrder(key) {
   
-  this.orderService.deleteOrder(key).then(() => {
+  this.orderService.deletePastOrder(key).then(() => {
     this.presentToast("deleted");
   })
 }
